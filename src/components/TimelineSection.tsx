@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Briefcase, School, Calendar } from 'lucide-react';
 
 interface TimelineItemProps {
   title: string;
@@ -22,9 +23,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
     <div className="timeline-item animate-fade-in">
       <div className="timeline-dot">
         {type === 'work' ? (
-          <img src="/icons/briefcase.png" alt="Work" className="w-4 h-4" />
+          <Briefcase size={16} />
         ) : (
-          <img src="/icons/school.png" alt="Education" className="w-4 h-4" />
+          <School size={16} />
         )}
       </div>
       <div className="timeline-card">
@@ -36,7 +37,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             </p>
           </div>
           <span className="flex items-center gap-1 text-sm text-gray-400">
-            <img src="/icons/calendar.png" alt="Calendar" className="w-4 h-4" />
+            <Calendar size={16} />
             {period}
           </span>
         </div>
@@ -95,7 +96,7 @@ const TimelineSection = () => {
           {/* Experience */}
           <div>
             <div className="flex items-center gap-2 justify-center mb-8">
-              <img src="/icons/briefcase.png" alt="Briefcase" className="w-6 h-6 text-neon-purple" />
+              <Briefcase size={24} className="text-neon-purple" />
               <h2 className="text-3xl font-bold">Experience</h2>
             </div>
             <div className="mt-12">
@@ -112,7 +113,7 @@ const TimelineSection = () => {
           {/* Education */}
           <div>
             <div className="flex items-center gap-2 justify-center mb-8">
-              <img src="/icons/school.png" alt="School" className="w-6 h-6 text-neon-purple" />
+              <School size={24} className="text-neon-purple" />
               <h2 className="text-3xl font-bold">Education</h2>
             </div>
             <div className="mt-12">
