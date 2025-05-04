@@ -1,5 +1,8 @@
+
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import Layout from "../components/Layout";
+import { Home } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,15 +15,24 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <Layout>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <h1 className="text-7xl font-bold gradient-text">404</h1>
+          <p className="text-2xl text-gray-300 mb-6">Oops! Page not found</p>
+          <p className="text-gray-400 max-w-md mx-auto mb-8">
+            The page you are looking for might have been removed or is temporarily unavailable.
+          </p>
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-blue py-3 px-6 rounded-full text-white font-medium hover:shadow-lg hover:shadow-neon-purple/20 transition-all hover-target"
+          >
+            <Home size={18} />
+            Back to Home
+          </a>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

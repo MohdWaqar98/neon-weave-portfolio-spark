@@ -1,0 +1,117 @@
+
+import React from 'react';
+import { Code, ExternalLink, Github } from 'lucide-react';
+
+interface ProjectProps {
+  title: string;
+  description: string;
+  image: string;
+  demoLink: string;
+  githubLink: string;
+  technologies: string[];
+}
+
+const Project: React.FC<ProjectProps> = ({
+  title,
+  description,
+  image,
+  demoLink,
+  githubLink,
+  technologies,
+}) => {
+  return (
+    <div className="project-card hover-lift">
+      <div className="h-48 overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110" />
+      </div>
+      <div className="p-6 space-y-4">
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="text-gray-400 text-sm h-20 overflow-hidden">{description}</p>
+        
+        <div className="flex flex-wrap gap-2 py-2">
+          {technologies.map((tech) => (
+            <span key={tech} className="text-xs bg-background/50 backdrop-blur-sm px-2 py-1 rounded-full text-gray-300">
+              {tech}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex gap-3">
+          <a 
+            href={demoLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-sm text-white bg-neon-blue/20 hover:bg-neon-blue/30 py-2 px-3 rounded-md transition-colors hover-target"
+          >
+            <ExternalLink size={16} />
+            Live Demo
+          </a>
+          <a 
+            href={githubLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-sm text-white bg-gray-700/30 hover:bg-gray-700/50 py-2 px-3 rounded-md transition-colors hover-target"
+          >
+            <Github size={16} />
+            Code
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProjectsSection = () => {
+  const projects = [
+    {
+      title: "E-commerce Platform",
+      description: "A full-stack e-commerce platform with product catalog, shopping cart, and secure payment integration.",
+      image: "https://images.unsplash.com/photo-1661956602139-ec64991b8b16?auto=format&fit=crop&w=800",
+      demoLink: "#",
+      githubLink: "#",
+      technologies: ["Spring Boot", "React", "MongoDB", "Stripe API"],
+    },
+    {
+      title: "Task Management App",
+      description: "A productivity application for managing tasks, projects and deadlines with team collaboration features.",
+      image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800",
+      demoLink: "#",
+      githubLink: "#",
+      technologies: ["Java", "Spring", "MySQL", "React", "Redux"],
+    },
+    {
+      title: "Fitness Tracker",
+      description: "An application to track workouts, nutrition, and fitness goals with data visualization.",
+      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800",
+      demoLink: "#",
+      githubLink: "#",
+      technologies: ["Spring Boot", "React", "PostgreSQL", "Chart.js"],
+    },
+  ];
+
+  return (
+    <section id="projects" className="py-20 bg-gradient-to-b from-background to-black/80 relative">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center gap-2 justify-center mb-4">
+          <Code size={24} className="text-neon-purple" />
+          <h2 className="section-heading">Projects</h2>
+        </div>
+        
+        <p className="text-center text-gray-400 max-w-xl mx-auto mb-12">
+          Here are some of my recent projects showcasing my skills and experience as a Java Full Stack Developer.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <Project
+              key={index}
+              {...project}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
