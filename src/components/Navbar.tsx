@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -55,7 +54,11 @@ const Navbar = () => {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? (
+            <img src="/icons/x.png" alt="Close menu" width={24} height={24} className="w-6 h-6" />
+          ) : (
+            <img src="/icons/menu.png" alt="Open menu" width={24} height={24} className="w-6 h-6" />
+          )}
         </button>
       </div>
 

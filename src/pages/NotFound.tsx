@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../components/Layout";
-import { Home } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -27,7 +26,7 @@ const NotFound = () => {
             href="/"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-blue py-3 px-6 rounded-full text-white font-medium hover:shadow-lg hover:shadow-neon-purple/20 transition-all hover-target"
           >
-            <Home size={18} />
+            <img src="/icons/home.png" alt="Home" className="w-5 h-5" />
             Back to Home
           </a>
         </div>

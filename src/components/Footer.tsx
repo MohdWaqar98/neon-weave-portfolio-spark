@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,16 +17,16 @@ const Footer = () => {
           
           <div className="flex space-x-6 mb-6 md:mb-0">
             <a href="#" className="text-gray-400 hover:text-white transition-colors hover-target">
-              <Github size={20} />
+              <img src="/icons/github.png" alt="GitHub" className="w-5 h-5" />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors hover-target">
-              <Linkedin size={20} />
+              <img src="/icons/linkedin.png" alt="LinkedIn" className="w-5 h-5" />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors hover-target">
-              <Twitter size={20} />
+              <img src="/icons/twitter.png" alt="Twitter" className="w-5 h-5" />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors hover-target">
-              <Mail size={20} />
+              <img src="/icons/mail.png" alt="Mail" className="w-5 h-5" />
             </a>
           </div>
         </div>

@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Github, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 const ContactSection = () => {
@@ -33,7 +32,7 @@ const ContactSection = () => {
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 justify-center mb-4">
-          <Mail size={24} className="text-neon-purple" />
+          <img src="/icons/mail.png" alt="Mail" className="w-6 h-6 text-neon-purple" />
           <h2 className="section-heading">Contact Me</h2>
         </div>
         
@@ -49,7 +48,7 @@ const ContactSection = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-neon-purple/20 flex items-center justify-center">
-                  <Mail size={20} className="text-neon-purple" />
+                  <img src="/icons/mail.png" alt="Mail" className="w-5 h-5 text-neon-purple" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
@@ -59,7 +58,7 @@ const ContactSection = () => {
               
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-neon-blue/20 flex items-center justify-center">
-                  <Phone size={20} className="text-neon-blue" />
+                  <img src="/icons/phone.png" alt="Phone" className="w-5 h-5 text-neon-blue" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Phone</p>
@@ -69,7 +68,7 @@ const ContactSection = () => {
               
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-neon-cyan/20 flex items-center justify-center">
-                  <Linkedin size={20} className="text-neon-cyan" />
+                  <img src="/icons/linkedin.png" alt="LinkedIn" className="w-5 h-5 text-neon-cyan" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">LinkedIn</p>
@@ -79,7 +78,7 @@ const ContactSection = () => {
               
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gray-700/50 flex items-center justify-center">
-                  <Github size={20} className="text-white" />
+                  <img src="/icons/github.png" alt="GitHub" className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">GitHub</p>
@@ -146,7 +145,7 @@ const ContactSection = () => {
                 ) : (
                   <>
                     Send Message 
-                    <Send size={18} />
+                    <img src="/icons/send.png" alt="Send" className="w-5 h-5" />
                   </>
                 )}
               </button>

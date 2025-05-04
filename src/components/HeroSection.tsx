@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { ArrowRight, FileText, Mail } from 'lucide-react';
 
 const HeroSection = () => {
   return (
@@ -27,15 +26,15 @@ const HeroSection = () => {
               href="#contact" 
               className="group flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-blue py-3 px-6 rounded-full text-white font-medium hover:shadow-lg hover:shadow-neon-purple/20 transition-all hover-target"
             >
-              <Mail size={18} />
+              <img src="/icons/mail.png" alt="Mail" className="w-5 h-5" />
               Contact Me 
-              <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+              <img src="/icons/arrow-right.png" alt="Arrow" className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="#" 
               className="flex items-center gap-2 border border-gray-700 hover:border-neon-blue py-3 px-6 rounded-full text-white font-medium transition-all hover-target"
             >
-              <FileText size={18} />
+              <img src="/icons/file-text.png" alt="Resume" className="w-5 h-5" />
               Resume
             </a>
           </div>
