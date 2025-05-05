@@ -1,6 +1,8 @@
 
 import React from 'react';
-import { Eye, Download } from 'lucide-react';
+import { Eye, Download, FileText } from 'lucide-react';
+import { Button } from './ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 
 const ResumeSection = () => {
   const handlePreviewResume = () => {
@@ -19,36 +21,50 @@ const ResumeSection = () => {
   };
 
   return (
-    <section id="resume" className="py-20">
+    <section id="resume" className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
         <h2 className="section-heading">My Resume</h2>
         <div className="mt-12 flex flex-col items-center justify-center">
-          <div className="glass-card p-8 rounded-xl max-w-3xl w-full">
-            <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
-              <div className="text-center md:text-left">
-                <h3 className="text-2xl font-bold mb-3">Resume</h3>
-                <p className="text-gray-300 mb-6">
-                  Download my resume or preview it online
+          <Card className="glass-card border-white/5 shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-3xl w-full overflow-hidden">
+            <CardHeader className="pb-2">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-full bg-gradient-to-r from-neon-purple to-neon-blue">
+                  <FileText size={24} className="text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl font-bold gradient-text">Professional Resume</CardTitle>
+                  <CardDescription className="text-gray-300">View my qualifications and experience</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="flex flex-col space-y-6">
+                <p className="text-gray-300 leading-relaxed">
+                  My resume highlights my professional journey, technical expertise, and project accomplishments.
+                  Download a copy for your reference or preview it online.
                 </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+                  <Button 
+                    onClick={handlePreviewResume}
+                    className="bg-gradient-to-r from-neon-purple to-neon-blue hover:brightness-110 transition-all group flex items-center justify-center gap-2 py-6 px-8 rounded-xl text-white font-medium w-full sm:w-auto"
+                  >
+                    <Eye size={20} className="group-hover:animate-pulse" />
+                    <span>Preview Resume</span>
+                  </Button>
+                  
+                  <Button 
+                    onClick={handleDownloadResume}
+                    variant="outline" 
+                    className="border border-neon-blue/30 hover:border-neon-blue hover:bg-white/5 flex items-center justify-center gap-2 py-6 px-8 rounded-xl text-white font-medium transition-all group w-full sm:w-auto"
+                  >
+                    <Download size={20} className="group-hover:translate-y-1 transition-transform" />
+                    <span>Download Resume</span>
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={handlePreviewResume}
-                  className="group flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-blue py-3 px-6 rounded-full text-white font-medium hover:shadow-lg hover:shadow-neon-purple/20 transition-all hover-target"
-                >
-                  <Eye size={20} />
-                  Preview Resume
-                </button>
-                <button
-                  onClick={handleDownloadResume}
-                  className="flex items-center gap-2 border border-gray-700 hover:border-neon-blue py-3 px-6 rounded-full text-white font-medium transition-all hover-target"
-                >
-                  <Download size={20} />
-                  Download Resume
-                </button>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
