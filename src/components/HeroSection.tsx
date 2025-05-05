@@ -32,7 +32,7 @@ const HeroSection = () => {
               <ArrowRight size={20} className="transform group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
-              href="#" 
+              href="#resume" 
               className="flex items-center gap-2 border border-gray-700 hover:border-neon-blue py-3 px-6 rounded-full text-white font-medium transition-all hover-target"
             >
               <FileText size={20} />

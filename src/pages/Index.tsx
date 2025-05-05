@@ -6,6 +6,7 @@ import AboutSection from '../components/AboutSection';
 import ProjectsSection from '../components/ProjectsSection';
 import SkillsSection from '../components/SkillsSection';
 import TimelineSection from '../components/TimelineSection';
+import ResumeSection from '../components/ResumeSection';
 import ContactSection from '../components/ContactSection';
 
 const Index = () => {
@@ -21,6 +22,7 @@ const Index = () => {
       <ProjectsSection />
       <SkillsSection />
       <TimelineSection />
+      <ResumeSection />
       <ContactSection />
     </Layout>
   );
