@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Code, ExternalLink, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import { Code, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectProps {
   title: string;
@@ -87,7 +87,50 @@ const ProjectsSection = () => {
       githubLink: "#",
       technologies: ["Spring Boot", "React", "PostgreSQL", "Chart.js"],
     },
+    {
+      title: "Social Media Dashboard",
+      description: "A comprehensive dashboard for analyzing and managing social media metrics across platforms.",
+      image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=800",
+      demoLink: "#",
+      githubLink: "#",
+      technologies: ["Java", "Spring Boot", "React", "D3.js", "Firebase"],
+    },
+    {
+      title: "Real Estate Marketplace",
+      description: "A platform connecting buyers, sellers and agents with property listings and virtual tours.",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800",
+      demoLink: "#",
+      githubLink: "#",
+      technologies: ["Java", "MongoDB", "Express", "React", "Node.js"],
+    },
   ];
+
+  // State for carousel
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const projectsPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+  const totalPages = Math.ceil(projects.length / projectsPerView);
+
+  const nextSlide = () => {
+    if (currentIndex < totalPages - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Loop back to the first page
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(totalPages - 1); // Loop to the last page
+    }
+  };
+
+  // Calculate visible projects
+  const visibleProjects = projects.slice(
+    currentIndex * projectsPerView, 
+    (currentIndex * projectsPerView) + projectsPerView
+  );
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-background to-black/80 relative">
@@ -101,13 +144,47 @@ const ProjectsSection = () => {
           Here are some of my recent projects showcasing my skills and experience as a Java Full Stack Developer.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Project
-              key={index}
-              {...project}
-            />
-          ))}
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {visibleProjects.map((project, index) => (
+              <Project
+                key={index + currentIndex * projectsPerView}
+                {...project}
+              />
+            ))}
+          </div>
+          
+          {/* Navigation arrows */}
+          <div className="flex justify-center mt-10 gap-4">
+            <button 
+              onClick={prevSlide}
+              className="p-3 rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none"
+              aria-label="Previous projects"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="p-3 rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none"
+              aria-label="Next projects"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+          
+          {/* Page indicator dots */}
+          <div className="flex justify-center mt-4 gap-2">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button 
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentIndex ? "bg-neon-purple w-6" : "bg-gray-600"
+                }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
