@@ -73,20 +73,36 @@ const ResumeSection = () => {
           </div>
         ) : (
           <div className="mt-12 flex flex-col items-center">
-            <div className="w-full max-w-4xl bg-white/5 rounded-lg p-4 backdrop-blur-sm border border-white/10">
-              <div className="flex justify-end mb-4">
-                <Button 
-                  onClick={handleClosePdf} 
-                  variant="outline" 
-                  className="border border-neon-blue/30 hover:border-neon-blue hover:bg-white/5 text-white"
-                >
-                  Close PDF
-                </Button>
+            <div className="w-full max-w-2xl bg-black/40 rounded-lg p-4 backdrop-blur-sm border border-white/10 shadow-xl">
+              <div className="flex justify-between items-center mb-2 bg-gray-900/80 rounded-t-md p-2 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-400">1 / 1</span>
+                </div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-gray-400 hover:text-white h-8 w-8 p-1"
+                    onClick={handleDownloadResume}
+                    aria-label="Download"
+                  >
+                    <Download size={16} />
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-gray-400 hover:text-white h-8 w-8 p-1"
+                    onClick={handleClosePdf}
+                    aria-label="Close"
+                  >
+                    ✕
+                  </Button>
+                </div>
               </div>
-              <div className="w-full aspect-[3/4] rounded-lg overflow-hidden">
+              <div className="bg-white rounded-b-md overflow-hidden">
                 <iframe 
                   src="/resume.pdf" 
-                  className="w-full h-full border-0" 
+                  className="w-full h-[70vh]" 
                   title="Resume PDF"
                 ></iframe>
               </div>
