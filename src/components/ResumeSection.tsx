@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Eye, Download, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
+import PDFViewer from './PDFViewer';
 
 const ResumeSection = () => {
   const [showPdf, setShowPdf] = useState(false);
@@ -76,7 +77,15 @@ const ResumeSection = () => {
             <div className="w-full max-w-2xl bg-black/40 rounded-lg p-4 backdrop-blur-sm border border-white/10 shadow-xl">
               <div className="flex justify-between items-center mb-2 bg-gray-900/80 rounded-t-md p-2 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-400">1 / 1</span>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-gray-400 hover:text-white h-8 w-8 p-1"
+                    onClick={handleClosePdf}
+                    aria-label="Close"
+                  >
+                    ✕
+                  </Button>
                 </div>
                 <div className="flex gap-2">
                   <Button 
@@ -88,23 +97,13 @@ const ResumeSection = () => {
                   >
                     <Download size={16} />
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="text-gray-400 hover:text-white h-8 w-8 p-1"
-                    onClick={handleClosePdf}
-                    aria-label="Close"
-                  >
-                    ✕
-                  </Button>
                 </div>
               </div>
               <div className="bg-white rounded-b-md overflow-hidden">
-                <iframe 
-                  src="/resume.pdf" 
-                  className="w-full h-[70vh]" 
-                  title="Resume PDF"
-                ></iframe>
+                <PDFViewer 
+                  pdfUrl="/resume.pdf" 
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
