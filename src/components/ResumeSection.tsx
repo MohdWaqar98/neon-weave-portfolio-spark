@@ -4,9 +4,11 @@ import { Eye, Download, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 import PDFViewer from './PDFViewer';
+import { Dialog, DialogContent } from './ui/dialog';
 
 const ResumeSection = () => {
   const [showPdf, setShowPdf] = useState(false);
+  const [showFullScreen, setShowFullScreen] = useState(false);
   
   const handlePreviewResume = () => {
     setShowPdf(true);
@@ -24,6 +26,10 @@ const ResumeSection = () => {
 
   const handleClosePdf = () => {
     setShowPdf(false);
+  };
+
+  const handleToggleFullScreen = () => {
+    setShowFullScreen(!showFullScreen);
   };
 
   return (
@@ -52,7 +58,7 @@ const ResumeSection = () => {
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button 
-                      onClick={handlePreviewResume}
+                      onClick={() => setShowFullScreen(true)}
                       className="bg-gradient-to-r from-neon-purple to-neon-blue hover:brightness-110 transition-all group flex items-center justify-center gap-2 py-6 px-8 rounded-xl text-white font-medium w-full sm:w-auto"
                     >
                       <Eye size={20} className="group-hover:animate-pulse" />
@@ -103,11 +109,26 @@ const ResumeSection = () => {
                 <PDFViewer 
                   pdfUrl="/resume.pdf" 
                   className="w-full"
+                  onToggleFullScreen={handleToggleFullScreen}
                 />
               </div>
             </div>
           </div>
         )}
+
+        {/* Fullscreen Dialog for PDF */}
+        <Dialog open={showFullScreen} onOpenChange={setShowFullScreen}>
+          <DialogContent className="max-w-[90vw] w-[90vw] max-h-[90vh] h-[90vh] p-6">
+            <div className="w-full h-full">
+              <PDFViewer 
+                pdfUrl="/resume.pdf" 
+                className="w-full h-full"
+                fullScreen={true}
+                onToggleFullScreen={handleToggleFullScreen}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
