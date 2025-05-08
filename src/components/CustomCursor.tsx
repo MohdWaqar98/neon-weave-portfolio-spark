@@ -46,13 +46,15 @@ const CustomCursor = () => {
         className="custom-cursor-dot animate-cursor-dot" 
         style={{ 
           transform: `translate(${position.x}px, ${position.y}px)`,
+          zIndex: 9999, // Increased z-index value
         }}
       />
       <div 
         className="custom-cursor-outline"
         style={{ 
           transform: `translate(${position.x - 16}px, ${position.y - 16}px) scale(${isPointer ? 1.5 : 1})`,
-          opacity: isPointer ? 0.8 : 0.6
+          opacity: isPointer ? 0.8 : 0.6,
+          zIndex: 9999, // Increased z-index value
         }}
       />
     </>
