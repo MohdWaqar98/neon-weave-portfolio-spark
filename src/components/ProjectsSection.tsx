@@ -1,6 +1,13 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Code, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface ProjectProps {
   title: string;
@@ -20,7 +27,7 @@ const Project: React.FC<ProjectProps> = ({
   technologies,
 }) => {
   return (
-    <div className="project-card hover-lift">
+    <div className="project-card hover-lift h-full">
       <div className="h-48 overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110" />
       </div>
@@ -105,33 +112,7 @@ const ProjectsSection = () => {
     },
   ];
 
-  // State for carousel
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const projectsPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-  const totalPages = Math.ceil(projects.length / projectsPerView);
-
-  const nextSlide = () => {
-    if (currentIndex < totalPages - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setCurrentIndex(0); // Loop back to the first page
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else {
-      setCurrentIndex(totalPages - 1); // Loop to the last page
-    }
-  };
-
-  // Calculate visible projects
-  const visibleProjects = projects.slice(
-    currentIndex * projectsPerView, 
-    (currentIndex * projectsPerView) + projectsPerView
-  );
-
+  // Use the shadcn/ui Carousel component for smooth transitions
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-background to-black/80 relative">
       <div className="container mx-auto px-4">
@@ -145,41 +126,33 @@ const ProjectsSection = () => {
         </p>
         
         <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {visibleProjects.map((project, index) => (
-              <Project
-                key={index + currentIndex * projectsPerView}
-                {...project}
-              />
-            ))}
-          </div>
-          
-          {/* Navigation arrows */}
-          <div className="flex justify-center mt-10 gap-4">
-            <button 
-              onClick={prevSlide}
-              className="p-3 rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none"
-              aria-label="Previous projects"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button 
-              onClick={nextSlide}
-              className="p-3 rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none"
-              aria-label="Next projects"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+          <Carousel
+            opts={{ 
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="gap-4">
+              {projects.map((project, index) => (
+                <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3">
+                  <Project {...project} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-10 gap-4">
+              <CarouselPrevious className="static transform-none rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none" />
+              <CarouselNext className="static transform-none rounded-full bg-gray-800/60 hover:bg-gray-700/80 text-white transition-all duration-300 hover:scale-110 focus:outline-none" />
+            </div>
+          </Carousel>
           
           {/* Page indicator dots */}
           <div className="flex justify-center mt-4 gap-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
+            {Array.from({ length: Math.ceil(projects.length / 3) }).map((_, index) => (
               <button 
                 key={index}
-                onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? "bg-neon-purple w-6" : "bg-gray-600"
+                  index === 0 ? "bg-neon-purple w-6" : "bg-gray-600"
                 }`}
                 aria-label={`Go to page ${index + 1}`}
               />
