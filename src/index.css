@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -109,6 +110,27 @@
   @apply fixed w-8 h-8 rounded-full border-2 border-neon-blue pointer-events-none opacity-60;
   transition: transform 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out;
   z-index: 9999;
+}
+
+.cursor-dot-pointer {
+  @apply bg-neon-blue;
+  animation: pulse 1.5s infinite;
+}
+
+.cursor-outline-pointer {
+  @apply border-neon-purple;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) translate(var(--x), var(--y));
+  }
+  50% {
+    transform: scale(1.2) translate(var(--x), var(--y));
+  }
+  100% {
+    transform: scale(1) translate(var(--x), var(--y));
+  }
 }
 
 .hover-lift {

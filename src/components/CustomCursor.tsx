@@ -11,15 +11,16 @@ const CustomCursor = () => {
     };
 
     const updateCursorType = () => {
-      const targetsWithPointer = document.querySelectorAll('a, button, [role="button"]');
-      
       const handleElementHover = (e: MouseEvent) => {
         const target = e.target as Element;
         const isHoverable = 
           target.closest('a') || 
           target.closest('button') || 
           target.closest('[role="button"]') ||
-          target.closest('.hover-target');
+          target.closest('.hover-target') ||
+          target.tagName === 'BUTTON' ||
+          target.tagName === 'A' ||
+          window.getComputedStyle(target).cursor === 'pointer';
         
         setIsPointer(!!isHoverable);
       };
@@ -43,18 +44,18 @@ const CustomCursor = () => {
   return (
     <>
       <div 
-        className="custom-cursor-dot animate-cursor-dot" 
+        className={`custom-cursor-dot ${isPointer ? 'cursor-dot-pointer' : ''}`}
         style={{ 
           transform: `translate(${position.x}px, ${position.y}px)`,
-          zIndex: 9999, // Increased z-index value
+          zIndex: 9999,
         }}
       />
       <div 
-        className="custom-cursor-outline"
+        className={`custom-cursor-outline ${isPointer ? 'cursor-outline-pointer' : ''}`}
         style={{ 
           transform: `translate(${position.x - 16}px, ${position.y - 16}px) scale(${isPointer ? 1.5 : 1})`,
           opacity: isPointer ? 0.8 : 0.6,
-          zIndex: 9999, // Increased z-index value
+          zIndex: 9999,
         }}
       />
     </>
